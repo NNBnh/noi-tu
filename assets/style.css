@@ -1,0 +1,56 @@
+@font-face {
+  font-family: Be Vietnam Pro;
+  src: url("https://raw.githubusercontent.com/bettergui/BeVietnamPro/main/fonts/webfonts/BeVietnamPro-Regular.woff2") format("woff2"),
+       url("https://raw.githubusercontent.com/NNBnh/bmono/main/dist/bmono/woff2/bmono-regular.woff2"                ) format("woff2");
+}
+
+* {
+  font-family: Be Vietnam Pro;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(-45deg, #FFC387, #FA7883, #6BB8FF, #8AF5FF);
+  background-size: 300% 300%;
+  animation: gradient 30s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@keyframes gradient {
+    0% { background-position:   0% 50%; }
+   50% { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+.gui {
+  margin: 0;
+  font-family: Bmono;
+  color: black;
+}
+
+#wordCount {
+  font-size: 7.5em;
+}
+
+#timer {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.piece {
+  height: 4em;
+  width: 8em;
+  margin: 0.5em;
+  border: none;
+  border-radius: 0.2em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+  text-align: center;
+  font-size: 1.5em;
+  text-transform: capitalize;
+  color: black;
+  background: white;
+}
