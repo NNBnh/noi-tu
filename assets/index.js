@@ -1,66 +1,85 @@
-const currentWord = document.getElementById("currentWord");
-const joinWord    = document.getElementById("joinWord");
-const timer       = document.getElementById("timer");
+const pieces = document.getElementById("pieces");
 
+let currentWord = "";
 let history = [];
-let [milliseconds, seconds, minutes] = [0, 0, 0];
-let time = null;
+let score = 0;
+let timer = null;
+let timeBonus = 0;
+let joinWord = null;
 
+function startGame() {
+  history = [];
 
-function displayTimer() {
-  milliseconds += 1;
+  currentWord = words[Math.floor(Math.random() * words.length)].split(" ")[0];
 
-  if(milliseconds >= 100) {
-    milliseconds = 0;
-    seconds++;
-    if(seconds >= 60) {
-      seconds = 0;
-      minutes++;
-    }
-  }
+  pieces.innerHTML = `
+    <div class="piece">
+      <input disabled value="${currentWord}">
+      <p id="counter">0</p>
+    </div>
+  `;
 
-  let m  = minutes      < 10 ? "0" + minutes      : minutes;
-  let s  = seconds      < 10 ? "0" + seconds      : seconds;
-  let ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
-
-  timer.innerHTML = `${m}:${s}:${ms}`;
+  addPiece();
+  startTimer();
 }
 
+function startTimer() {
+  clearInterval(timer);
+  timeBonus = 5000;
 
-// TODO {
-  clearInterval(time);
-  [milliseconds,seconds,minutes] = [0, 0, 0];
+  timer = setInterval(function () {
+    timeBonus -= 1;
 
-  currentWord.value = words[Math.floor(Math.random() * words.length)].split(" ")[0];
+    if (timeBonus <= 1000) clearInterval(timer);
+  }, 1);
+}
 
-  time = setInterval(displayTimer, 10);
-// }
+function addPiece() {
+  const counter = history.length + 1;
 
+  pieces.innerHTML += `
+    <div class="piece">
+      <input autocomplete="off" onkeyup="checkWord(event)">
+      <p id="counter">${counter}</p>
+    </div>
+  `;
 
-joinWord.addEventListener("keyup", function(event) {
-  if (event.keyCode !== 13) return
+  joinWord = document.querySelector(".piece:last-child input");
+  joinWord.focus();
+}
+
+function checkWord(event) {
+  if (event.keyCode !== 13) {
+    // TODO
+    return;
+  }
 
   event.preventDefault();
 
-  let joinWordFormated = joinWord.value.toLowerCase().trim();
-  let fullWord = currentWord.value + " " + joinWordFormated;
+  const joinWordFormated = joinWord.value.toLowerCase().trim();
+  const fullWord = currentWord + " " + joinWordFormated;
 
-  if (! words.includes(fullWord)) {
-    // TODO
-    return
-  }
-
-  if (history.includes(fullWord)) {
-    // TODO
-    return
-  }
+  if (! words.includes(fullWord)) { /* TODO */ return }
+  if (history.includes(fullWord)) { /* TODO */ return }
 
   history.push(fullWord);
-  document.getElementById("wordCount").innerHTML = history.length;
+  currentWord = joinWordFormated;
 
-  currentWord.value = joinWordFormated;
-  joinWord.value = null;
-});
+  document.querySelector(".piece input"   ).setAttribute("style", "animation: disappear 250ms");
+  document.querySelector(".piece #counter").outerHTML = null;
+  setTimeout(function() {
+    document.querySelector(".piece").outerHTML = null;
+  }, 250);
+
+  joinWord.setAttribute("value", joinWordFormated);
+  joinWord.disabled = true;
+  joinWord.setAttribute("style", "animation: none");
+  addPiece();
+
+  score += timeBonus;
+  document.getElementById("score").innerHTML = score;
+  startTimer();
+}
 
 
-// timer.innerHTML = null;
+startGame();

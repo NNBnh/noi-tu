@@ -17,7 +17,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
 }
 
 @keyframes gradient {
@@ -26,31 +25,55 @@ body {
   100% { background-position:   0% 50%; }
 }
 
-.gui {
-  margin: 0;
+#score {
+  position: absolute;
+  top: 0;
   font-family: Bmono;
+  font-weight: bold;
+  font-size: 2em;
   color: black;
 }
 
-#wordCount {
-  font-size: 7.5em;
-}
-
-#timer {
-  font-weight: bold;
-  font-size: 1.5em;
+#pieces {
+  display: flex;
+  flex-direction: row;
 }
 
 .piece {
+  margin: 0.5em;
+  position: relative;
+}
+
+.piece input {
   height: 4em;
   width: 8em;
-  margin: 0.5em;
   border: none;
   border-radius: 0.2em;
+  outline: none;
   box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
   text-align: center;
   font-size: 1.5em;
   text-transform: capitalize;
   color: black;
   background: white;
+  animation: appear 250ms;
 }
+
+.piece input[disabled] {
+  color: #585858;
+  background: #E0E0E0;  
+}
+
+#counter {
+  position: absolute;
+  bottom: 0;
+  right: 0.25em;
+  margin: 0;
+  font-family: Bmono;
+  font-weight: bold;
+  font-size: 1em;
+  color: #585858;
+}
+
+@keyframes    appear { from { width: 0; opacity: 0%; } }
+@keyframes disappear { to   { width: 0; opacity: 0%; } }
