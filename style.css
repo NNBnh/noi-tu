@@ -75,5 +75,5 @@ body {
   color: #585858;
 }
 
-@keyframes    appear { from { width: 0; opacity: 0%; } }
-@keyframes disappear { to   { width: 0; opacity: 0%; } }
+@keyframes    appear { from { width: 0; opacity: 0%; margin: 0; } }
+@keyframes disappear { to   { width: 0; opacity: 0%; margin: 0; } }

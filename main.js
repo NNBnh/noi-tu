@@ -1,17 +1,20 @@
+const scoreDisplay = document.getElementById("score");
 const pieces = document.getElementById("pieces");
 
 let currentWord = "";
 let history = [];
 let score = 0;
 let timer = null;
-let timeBonus = 0;
+let timeBonus = 1000;
 let joinWord = null;
 
 function startGame() {
   history = [];
 
-  currentWord = words[Math.floor(Math.random() * words.length)].split(" ")[0];
+  score = 0;
+  scoreDisplay.innerHTML = 0;
 
+  currentWord = words[Math.floor(Math.random() * words.length)].split(" ")[0];
   pieces.innerHTML = `
     <div class="piece">
       <input disabled value="${currentWord}">
@@ -40,7 +43,7 @@ function addPiece() {
   pieces.innerHTML += `
     <div class="piece">
       <input autocomplete="off" onkeyup="checkWord(event)">
-      <p id="counter">${counter}</p>
+      <p id="counter" style="opacity: 50%">${counter}</p>
     </div>
   `;
 
@@ -65,7 +68,8 @@ function checkWord(event) {
   history.push(fullWord);
   currentWord = joinWordFormated;
 
-  document.querySelector(".piece input"   ).setAttribute("style", "animation: disappear 250ms");
+  document.querySelector(".piece"         ).setAttribute("style", "animation: disappear 250ms");
+  document.querySelector(".piece input"   ).setAttribute("style", "animation: disappear 200ms");
   document.querySelector(".piece #counter").outerHTML = null;
   setTimeout(function() {
     document.querySelector(".piece").outerHTML = null;
@@ -74,10 +78,11 @@ function checkWord(event) {
   joinWord.setAttribute("value", joinWordFormated);
   joinWord.disabled = true;
   joinWord.setAttribute("style", "animation: none");
+  document.querySelector(".piece:last-child #counter").removeAttribute("style");
   addPiece();
 
   score += timeBonus;
-  document.getElementById("score").innerHTML = score;
+  scoreDisplay.innerHTML = score;
   startTimer();
 }
 
