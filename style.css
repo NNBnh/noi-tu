@@ -1,7 +1,7 @@
 @font-face {
   font-family: Be Vietnam Pro;
   src: url("https://raw.githubusercontent.com/bettergui/BeVietnamPro/main/fonts/webfonts/BeVietnamPro-Regular.woff2") format("woff2"),
-       url("https://raw.githubusercontent.com/NNBnh/bmono/main/dist/bmono/woff2/bmono-regular.woff2"                ) format("woff2");
+       url("https://raw.githubusercontent.com/NNBnh/bmono/main/dist/bmono/ttf/bmono-regular.ttf") format("truetype");
 }
 
 * {
