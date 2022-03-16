@@ -17,8 +17,8 @@ function startGame() {
   currentWord = words[Math.floor(Math.random() * words.length)].split(" ")[0];
   pieces.innerHTML = `
     <div class="piece">
-      <input disabled value="${currentWord}">
-      <p id="counter">0</p>
+      <input disabled value="${currentWord}" />
+      <p class="counter">0</p>
     </div>
   `;
 
@@ -40,10 +40,12 @@ function startTimer() {
 function addPiece() {
   const counter = history.length + 1;
 
+  document.title = currentWord.charAt(0).toUpperCase() + currentWord.slice(1) + " ____";
+
   pieces.innerHTML += `
     <div class="piece">
-      <input autocomplete="off" onkeyup="checkWord(event)">
-      <p id="counter" style="opacity: 50%">${counter}</p>
+      <input placeholder="Nhấn đây!" autocomplete="off" onkeyup="checkWord(event)" />
+      <p class="counter" style="opacity: 50%">${counter}</p>
     </div>
   `;
 
@@ -60,7 +62,7 @@ function checkWord(event) {
   event.preventDefault();
 
   const joinWordFormated = joinWord.value.toLowerCase().trim();
-  const fullWord = currentWord + " " + joinWordFormated;
+  const fullWord = `${currentWord} ${joinWordFormated}`;
 
   if (! words.includes(fullWord)) { /* TODO */ return }
   if (history.includes(fullWord)) { /* TODO */ return }
@@ -70,7 +72,7 @@ function checkWord(event) {
 
   document.querySelector(".piece"         ).setAttribute("style", "animation: disappear 250ms");
   document.querySelector(".piece input"   ).setAttribute("style", "animation: disappear 200ms");
-  document.querySelector(".piece #counter").outerHTML = null;
+  document.querySelector(".piece .counter").outerHTML = null;
   setTimeout(function() {
     document.querySelector(".piece").outerHTML = null;
   }, 250);
@@ -78,7 +80,7 @@ function checkWord(event) {
   joinWord.setAttribute("value", joinWordFormated);
   joinWord.disabled = true;
   joinWord.setAttribute("style", "animation: none");
-  document.querySelector(".piece:last-child #counter").removeAttribute("style");
+  document.querySelector(".piece:last-child .counter").removeAttribute("style");
   addPiece();
 
   score += timeBonus;

@@ -46,7 +46,7 @@ body {
 
 .piece input {
   height: 4em;
-  width: 8em;
+  width: clamp(6em, 40vw, 8em);
   border: none;
   border-radius: 0.2em;
   outline: none;
@@ -59,12 +59,28 @@ body {
   animation: appear 250ms;
 }
 
+.piece input::placeholder {
+  opacity: 1;
+  font-family: Bmono;
+  font-weight: bold;
+  font-size: 0.6em;
+  color: #5555C2;
+}
+
+.piece input:hover::placeholder {
+  color: #5890F8;
+}
+
+.piece input:focus::placeholder {
+  color: transparent;
+}
+
 .piece input[disabled] {
   color: #585858;
   background: #E0E0E0;  
 }
 
-#counter {
+.counter {
   position: absolute;
   bottom: 0;
   right: 0.25em;
