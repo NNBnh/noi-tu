@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Be Vietnam Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+
+@font-face{
+  font-family: "Bmono";
+  src: url("https://raw.githubusercontent.com/NNBnh/bmono/main/dist/bmono/woff2/bmono-regular.woff2") format("woff2");
+}
+
+@keyframes gradient {
+    0% { background-position:   0% 50%; }
+   50% { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+@keyframes    appear { from { width: 0; opacity: 0%; margin: 0; } }
+@keyframes disappear { to   { width: 0; opacity: 0%; margin: 0; } }
+
+
+* {
+  font-family: Be Vietnam Pro;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(-45deg, #FFC387, #FA7883, #6BB8FF, #8AF5FF);
+  background-size: 300% 300%;
+  animation: gradient 30s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+#score {
+  position: absolute;
+  top: 0;
+  font-family: Bmono;
+  font-weight: bold;
+  font-size: 2em;
+  color: black;
+}
+
+#pieces {
+  display: flex;
+  flex-direction: row;
+}
+
+.piece {
+  margin: 0.5em;
+  position: relative;
+}
+
+.piece input {
+  height: 4em;
+  width: clamp(6em, 40vw, 8em);
+  border: none;
+  border-radius: 0.2em;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+  text-align: center;
+  font-size: 1.5em;
+  text-transform: capitalize;
+  color: black;
+  background: white;
+  animation: appear 250ms;
+}
+
+.piece input::placeholder {
+  opacity: 1;
+  font-family: Bmono;
+  font-weight: bold;
+  font-size: 0.6em;
+  color: #5555C2;
+}
+
+.piece input:hover::placeholder {
+  color: #5890F8;
+}
+
+.piece input:focus::placeholder {
+  color: transparent;
+}
+
+.piece input[disabled] {
+  color: #585858;
+  background: #E0E0E0;  
+}
+
+.counter {
+  position: absolute;
+  bottom: 0;
+  right: 0.25em;
+  margin: 0;
+  font-family: Bmono;
+  font-weight: bold;
+  font-size: 1em;
+  color: #585858;
+}
+
+#usedWordList {
+  padding: 1em;
+  border-radius: 0.2em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+  background: white;
+  animation: appear 250ms;
+}
+
+#usedWordList pre {
+  height: 50vh;
+  width: clamp(15em, 75vw, 20em);
+  margin: 0;
+  padding: 1em;
+  font-family: Bmono;
+  color: black;
+  animation: appear 250ms;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
