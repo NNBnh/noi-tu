@@ -16,6 +16,21 @@
 @keyframes    appear { from { width: 0; opacity: 0%; margin: 0; } }
 @keyframes disappear { to   { width: 0; opacity: 0%; margin: 0; } }
 
+@keyframes appearScale {
+   0% { opacity: 0% }
+  25% { opacity: 0%; transform: scale(50%); }
+}
+
+@keyframes back {
+    0% { transform: translateX( 0.2em); }
+   50% { transform: translateX(-0.2em); }
+  100% { transform: translateX( 0.2em); }
+}
+
+@keyframes spin {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(  0deg); }
+}
 
 * {
   font-family: Be Vietnam Pro;
@@ -105,7 +120,7 @@ body {
   border-radius: 0.2em;
   box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
   background: white;
-  animation: appear 250ms;
+  animation: appearScale 500ms;
 }
 
 #usedWordList pre {
@@ -118,4 +133,37 @@ body {
   animation: appear 250ms;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+#endGameNav {
+  margin-top: 1em;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+#endGameNav input {
+  flex-grow: 1;
+  height: 2em;
+  margin: 0 1em;
+  border: 0;
+  border-bottom: 0.2em solid black;
+  outline: none;
+}
+
+#endGameNav button {
+  border: none;
+  background: none;
+}
+
+#endGameNav button img {
+  height: 2em;
+}
+
+#backButton:hover {
+  animation: back 1s ease infinite;
+}
+
+#replayButton:hover {
+  animation: spin 1s linear infinite;
 }
