@@ -137,6 +137,7 @@ body {
   background: black;
   color: white;
   transition: 250ms;
+  animation: appearScale 500ms;
 }
 
 #warningBar i {

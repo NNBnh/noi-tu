@@ -1,5 +1,6 @@
 const scoreDisplay = document.getElementById("score");
 const pieces = document.getElementById("pieces");
+const warningBar = document.getElementById("warningBar");
 const buttonEnd = document.getElementById("buttonEnd");
 const buttonInfo = document.getElementById("buttonInfo");
 const buttonStartIcon = document.getElementById("buttonStartIcon");
@@ -13,7 +14,6 @@ let timeBonus = 1000;
 let joinWord = null;
 
 function warning(text) {
-  const warningBar = document.getElementById("warningBar");
   if (! text) {
     warningBar.classList.add("hide");
   } else {
