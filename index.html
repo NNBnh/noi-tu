@@ -1,5 +1,27 @@
 <!DOCTYPE html>
-<meta charset="utf-8" />
-<title>Nối Từ 100</title>
-<meta http-equiv="refresh" content="0; url=client/index.html">
-<link rel="canonical" href="client/index.html">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nối Từ 100</title>
+
+    <link rel="shortcut icon" href="logo.svg" />
+    <link rel="stylesheet" href="style.css" media="screen" />
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+  </head>
+  <body>
+    <p id="score"></p>
+
+    <div id="pieces"></div>
+    <p id="warning"></p>
+
+    <div id="buttons">
+      <button id="buttonStart" onclick=" startGame()"><i id="buttonStartIcon" class="las la-play" ></i></button>
+      <button id="buttonEnd"   onclick="scoreBoard()"><i id="buttonEndIcon"   class="las la-medal"></i></button>
+      <button id="buttonInfo"  onclick="     about()"><i                      class="las la-info" ></i></button>
+    </div>
+
+    <script type="text/javascript" src="words/words.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>
