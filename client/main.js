@@ -9,6 +9,19 @@ let timer = null;
 let timeBonus = 1000;
 let joinWord = null;
 
+function warning() {
+  pieces.innerHTML = `
+    <div class="piece">
+      <input disabled value="chơi" />
+      <p class="counter">0</p>
+    </div>
+    <div class="piece">
+      <input placeholder="Nhấn đây!" list="gameModes" onkeyup="checkMode(event)" />
+      <p class="counter" style="opacity: 50%">1</p>
+    </div>
+  `;
+}
+
 function menu() {
   document.title = "Nối Từ 100";
   scoreDisplay.innerHTML = null;
@@ -43,7 +56,7 @@ function checkMode(event) {
       startGameMulti();
       break;
     default:
-      // TODO 
+      warning('Hãy nhập chế dộ chơi "đơn" hoặc "đấu"');
   }
 }
 
@@ -107,10 +120,10 @@ function checkWord(event) {
 
   if (gameMode === 1) {
     switch(joinWordFormated) {
-      case "[":
+      case ",":
         startGameSingle();
         break;
-      case "]":
+      case ".":
         endGame();
         break;
     }
@@ -118,8 +131,8 @@ function checkWord(event) {
 
   const fullWord = `${currentWord} ${joinWordFormated}`;
 
-  if (! words.includes(fullWord)) { /* TODO */ return }
-  if (history.includes(fullWord)) { /* TODO */ return }
+  if (! words.includes(fullWord)) { warning("Từ này không có trong từ điển"); return }
+  if (history.includes(fullWord)) { warning("Từ này đã được sử dụng"); return }
 
   history.push(fullWord);
   currentWord = joinWordFormated;
