@@ -12,10 +12,19 @@ let timer = null;
 let timeBonus = 1000;
 let joinWord = null;
 
-function warning() {
-  // TODO
-  pieces.innerHTML = `
-  `;
+function warning(text) {
+  const warningBar = document.getElementById("warningBar");
+  if (! text) {
+    warningBar.classList.add("hide");
+  } else {
+    warningBar.innerHTML = `
+      <i class="las la-exclamation-triangle"></i>
+      ${text}
+      <i class="las la-exclamation-triangle"></i>
+    `;
+
+    warningBar.classList.remove("hide");
+  }
 }
 
 function startGame() {
@@ -38,6 +47,7 @@ function startGame() {
     </div>
   `;
 
+  warning();
   addPiece();
   startTimer();
 }
@@ -68,12 +78,11 @@ function addPiece() {
 }
 
 function checkWord(event) {
-  if (event.keyCode !== 13) {
-    // TODO
-    return;
-  }
+  if (event.keyCode !== 13) return;
 
   event.preventDefault();
+
+  warning();
 
   const joinWordFormated = joinWord.value.toLowerCase().trim();
 
@@ -133,6 +142,8 @@ function endGame() {
       </div>
     </div>
   `;
+
+  warning();
 
   buttonEnd.onclick = function() { scoreBoard() };
   buttonInfo.classList.remove("disabled");
@@ -194,7 +205,7 @@ function about() {
       </ul>
 
       <p id="love">
-        <i class="lab la-github"></i> <a href="https://github.com/NNBnh/noi-tu">Mã nguồn</a>
+        <a href="https://github.com/NNBnh/noi-tu">Mã nguồn</a>
         -
         Made with <i id="heart" class="las la-heart"></i> by <a href="http://nnbnh.github.io">NNB</a>
       </p>

@@ -44,6 +44,10 @@ a:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
 }
 
+.hide {
+  opacity: 0;
+}
+
 .disabled {
   opacity: 0.5;
   pointer-events: none;
@@ -126,6 +130,20 @@ body {
   color: #585858;
 }
 
+#warningBar {
+  height: 1.25em;
+  padding: 0.25em;
+  border-radius: 0.2em;
+  background: black;
+  color: white;
+  transition: 250ms;
+}
+
+#warningBar i {
+  margin: 0 0.25em;
+}
+
+
 #buttons {
   position: absolute;
   bottom: 1em;
@@ -151,6 +169,7 @@ body {
   background: white;
   color: black;
 }
+
 
 .board {
   padding: 1em;
@@ -235,8 +254,4 @@ iframe {
 
 #heart {
   color: #DE5D6E;
-}
-
-#author {
-  
 }
