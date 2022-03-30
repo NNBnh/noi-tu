@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
 
-@font-face{
+@font-face {
   font-family: "Bmono";
   src: url("https://raw.githubusercontent.com/NNBnh/bmono/main/dist/bmono/woff2/bmono-regular.woff2") format("woff2");
 }
@@ -220,7 +220,7 @@ body {
 }
 
 iframe {
-  height: 80vh;
+  height: 70vh;
   width: 80vw;
   min-width: 20em;
   border-radius: 0.2em;

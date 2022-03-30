@@ -1,6 +1,7 @@
 const scoreDisplay = document.getElementById("score");
 const pieces = document.getElementById("pieces");
 const warningBar = document.getElementById("warningBar");
+
 const buttonEnd = document.getElementById("buttonEnd");
 const buttonInfo = document.getElementById("buttonInfo");
 const buttonStartIcon = document.getElementById("buttonStartIcon");
@@ -39,7 +40,7 @@ function startGame() {
   score = 0;
   scoreDisplay.innerHTML = 0;
 
-  currentWord = words[Math.floor(Math.random() * words.length)].split(" ")[0];
+  currentWord = words_start[Math.floor(Math.random() * 100)];
   pieces.innerHTML = `
     <div class="piece">
       <input class="shadow" disabled value="${currentWord}" />
@@ -99,8 +100,8 @@ function checkWord(event) {
 
   const fullWord = `${currentWord} ${joinWordFormated}`;
 
-  if (! words.includes(fullWord)) { warning("Từ này không có trong từ điển"); return }
-  if (history.includes(fullWord)) { warning("Từ này đã được sử dụng"); return }
+  if (! words[currentWord].includes(joinWordFormated)) { warning("Từ này không có trong từ điển"); return }
+  if (history.includes(fullWord)                     ) { warning("Từ này đã được sử dụng");        return }
 
   history.push(fullWord);
   currentWord = joinWordFormated;
@@ -176,6 +177,8 @@ function scoreBoard() {
   pieces.innerHTML = `
     <iframe class="shadow" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTgPJqsipjuAGyCwu-OpUJdbnlvqgPFHiXxBKESWwp50RbO0KaLBaJBhYwtLzHIIsUp2ll4-yZh2WGI/pubhtml?gid=1462957762&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
   `;
+
+  warning();
 
   buttonEnd.classList.add("disabled");
   buttonInfo.classList.remove("disabled");
